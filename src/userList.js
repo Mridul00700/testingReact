@@ -30,10 +30,12 @@ const UserList = (props) => {
 
     return (<table>
         <thead>
+            <tr>
             <th>Name</th>
             <th>Email</th>
+            </tr>
         </thead>
-        <tbody>
+        <tbody data-testid="users">
             {renderUser}
         </tbody>
     </table>)
