@@ -28,8 +28,8 @@ test("it calls adduser when the form is submitted!", async()=>{
 
     const mock = jest.fn();
     render(<UserForm addUser={mock}/>);
-    const [nameInput, emailInput] = screen.getAllByRole("textbox");
-
+    const nameInput = screen.getByRole("textbox", {name : /name/i});
+    const  emailInput = screen.getByRole("textbox", {name : /email/i});
     await user.click(nameInput);
     await user.keyboard("Jame");
     await user.click(emailInput);
