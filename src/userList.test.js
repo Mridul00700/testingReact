@@ -32,4 +32,18 @@ test("render one row per user", async()=>{
 
 test("render the email and name of the user", ()=>{
 
+    const users= [
+        {name: "xyz", email:"xyz@gmail.com"},
+        {name: "abc", email:"abc@gmail.com"}
+    ]
+    render(<UserList userList={users}/>);
+
+    for(let user of users){
+        const name = screen.getByRole('cell', {name: user.name});
+        const email = screen.getByRole('cell', {name: user.email});
+
+        expect(name).toBeInTheDocument();
+        expect(email).toBeInTheDocument();
+    }
+    // screen.logTestingPlaygroundURL();
 });
