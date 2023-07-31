@@ -3,14 +3,29 @@ import { screen, render, within  } from "@testing-library/react";
 // import user from "@testing-library/user-event";
 import UserList from "./userList";
 
-test("render one row per user", async()=>{
-
+const renderComponent = () => {
     const users= [
         {name: "xyz", email:"xyz@gmail.com"},
         {name: "abc", email:"abc@gmail.com"}
     ]
     //render
-    const {container} = render(<UserList userList={users}/>);
+    render(<UserList userList={users} />)
+
+    return{
+        users
+    }
+} 
+
+test("render one row per user", async()=>{
+
+    // const users= [
+    //     {name: "xyz", email:"xyz@gmail.com"},
+    //     {name: "abc", email:"abc@gmail.com"}
+    // ]
+    // //render
+    // render(<UserList userList={users} />)
+    renderComponent();
+    // const {container} = render(<UserList userList={users}/>);
     // get all rows 
 
     // screen.logTestingPlaygroundURL();
@@ -32,11 +47,13 @@ test("render one row per user", async()=>{
 
 test("render the email and name of the user", ()=>{
 
-    const users= [
-        {name: "xyz", email:"xyz@gmail.com"},
-        {name: "abc", email:"abc@gmail.com"}
-    ]
-    render(<UserList userList={users}/>);
+    // const users= [
+    //     {name: "xyz", email:"xyz@gmail.com"},
+    //     {name: "abc", email:"abc@gmail.com"}
+    // ]
+    // render(<UserList userList={users}/>);
+
+    const {users} = renderComponent();
 
     for(let user of users){
         const name = screen.getByRole('cell', {name: user.name});
